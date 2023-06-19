@@ -1,43 +1,49 @@
-# Introduction
+# Article
 
-This is a skeleton application using the Hyperf framework. This application is meant to be used as a starting place for those looking to get their feet wet with Hyperf Framework.
+https://medium.com/@ronei.kunkel/php-paralelo-e-ass%C3%ADncrono-com-swoole-e-hyperf-ffbc660acfee
 
-# Requirements
+# Routes available
 
-Hyperf has some requirements for the system environment, it can only run under Linux and Mac environment, but due to the development of Docker virtualization technology, Docker for Windows can also be used as the running environment under Windows.
 
-The various versions of Dockerfile have been prepared for you in the [hyperf/hyperf-docker](https://github.com/hyperf/hyperf-docker) project, or directly based on the already built [hyperf/hyperf](https://hub.docker.com/r/hyperf/hyperf) Image to run.
+/sequential
 
-When you don't want to use Docker as the basis for your running environment, you need to make sure that your operating environment meets the following requirements:  
+/sequential/
 
- - PHP >= 8.0
- - Any of the following network engines
-   - Swoole PHP extension >= 4.5，with `swoole.use_shortname` set to `Off` in your `php.ini`
-   - Swow PHP extension (Beta)
- - JSON PHP extension
- - Pcntl PHP extension
- - OpenSSL PHP extension （If you need to use the HTTPS）
- - PDO PHP extension （If you need to use the MySQL Client）
- - Redis PHP extension （If you need to use the Redis Client）
- - Protobuf PHP extension （If you need to use the gRPC Server or Client）
+/sequential/0
 
-# Installation using Composer
+/sequential/1
 
-The easiest way to create a new Hyperf project is to use [Composer](https://getcomposer.org/). If you don't have it already installed, then please install as per [the documentation](https://getcomposer.org/download/).
+/sequential/2
 
-To create your new Hyperf project:
+/sequential/3
 
-```bash
-$ composer create-project hyperf/hyperf-skeleton path/to/install
-```
+/sequential/4
 
-Once installed, you can run the server immediately using the command below.
+/sequential/5
 
-```bash
-$ cd path/to/install
-$ php bin/hyperf.php start
-```
 
-This will start the cli-server on port `9501`, and bind it to all network interfaces. You can then visit the site at `http://localhost:9501/`
 
-which will bring up Hyperf default home page.
+/parallel
+
+/parallel/
+
+/parallel/0
+
+/parallel/1
+
+/parallel/2
+
+/parallel/3
+
+/parallel/4
+
+/parallel/5
+
+
+# Locally execution
+
+Clone this project and only run commands bellow:
+
+1. `docker-compose build`
+
+2. `docker-compose up -d`
