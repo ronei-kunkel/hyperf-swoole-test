@@ -26,7 +26,10 @@ return [
             'namespace' => 'App\\Command',
         ],
         'controller' => [
-            'namespace' => 'App\\Controller',
+            'namespace' => 'App\\Infra\\Http\\Controller',
+        ],
+        'model' => [
+            'namespace' => 'App\\Infra\\Database\\Model'
         ],
         'job' => [
             'namespace' => 'App\\Job',

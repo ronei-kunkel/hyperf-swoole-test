@@ -9,9 +9,11 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace App\Controller;
+namespace App\Infra\Http\Controller;
 
+use Hyperf\Coroutine\Coroutine;
 use Hyperf\Coroutine\Parallel;
+use Hyperf\HttpServer\Contract\ResponseInterface;
 
 class IndexController extends AbstractController
 {
@@ -88,7 +90,7 @@ class IndexController extends AbstractController
         $this->ordemExecucaoCorrotina += 1;
 
         $sleep = $this->sleeps[$ordemAdicaoCorrotina - 1];
-        sleep($sleep);
+        Coroutine::sleep($sleep);
         $momentoFinalizacao = date('Y-m-d H:i:s');
 
         $ordemFinalizacaoCorrotina       = $this->ordemFinalizacaoCorrotina;
@@ -104,9 +106,9 @@ class IndexController extends AbstractController
         ];
     }
 
-    public function parallel(int $sequence = 0)
+    public function parallel(int $sleepSequence = 0)
     {
-        $this->resetParameters($sequence, 'parallel');
+        $this->resetParameters($sleepSequence, 'parallel');
 
         $parallel = new Parallel();
 
@@ -134,10 +136,10 @@ class IndexController extends AbstractController
         return $this->retorno;
     }
 
-    public function sequential(int $sequence = 0)
+    public function sequential(int $sleepSequence = 0)
     {
 
-        $this->resetParameters($sequence, 'sequential');
+        $this->resetParameters($sleepSequence, 'sequential');
 
         $this->newExec(1);
         $this->newExec(2);
@@ -147,5 +149,9 @@ class IndexController extends AbstractController
         $this->newExec(6);
 
         return $this->retorno;
+    }
+
+    public function index(ResponseInterface $response) {
+        return $response->redirect('/parallel', 302);
     }
 }

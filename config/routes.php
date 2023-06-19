@@ -10,13 +10,9 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 use Hyperf\HttpServer\Router\Router;
-use App\Controller\IndexController;
+use App\Infra\Http\Controller\IndexController;
 
-Router::addGroup('/parallel', function () {
-    Router::get('[{sequence}]', [IndexController::class, 'parallel']);
-    Router::get('/[{sequence}]', [IndexController::class, 'parallel']);
-});
-Router::addGroup('/sequential', function () {
-  Router::get('[{sequence}]', [IndexController::class, 'sequential'], ['opa'=>1]);
-  Router::get('/[{sequence}]', [IndexController::class, 'sequential']);
-});
+Router::get('[/]', [IndexController::class, 'index']);
+
+Router::get('/parallel[/[{sleepSequence:[0-5][/]?}]]', [IndexController::class, 'parallel']);
+Router::get('/sequential[/[{sleepSequence:[0-5][/]?}]]', [IndexController::class, 'sequential']);
