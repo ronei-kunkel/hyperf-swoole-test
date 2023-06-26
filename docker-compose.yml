@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  hyperf-skeleton:
-    container_name: hyperf-skeleton
+  php-swoole:
+    container_name: php-swoole
     image: hyperf/hyperf:8.0-alpine-v3.13-swoole
     working_dir: /app
     entrypoint: ["php", "bin/hyperf.php", "server:watch"]
@@ -11,23 +11,23 @@ services:
       - ./:/app
     ports:
       - 80:9501
-  #   depends_on:
-  #     - hyperf-skeleton-mariadb
-  #     - hyperf-skeleton-redis
+    depends_on:
+      - mariadb
+      - redis
 
-  # hyperf-skeleton-mariadb:
-  #   container_name: hyperf-skeleton-mariadb
-  #   image: mariadb:latest
-  #   volumes:
-  #     - ./.docker/mariadb:/var/lib/mysql
-  #   ports:
-  #     - 3306:3306
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-  #     MYSQL_DATABASE: ${DB_DATABASE}
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    volumes:
+      - ./.docker/mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
 
-  # hyperf-skeleton-redis:
-  #   container_name: hyperf-skeleton-redis
-  #   image: redis:latest
-  #   ports:
-  #     - 6379:6379
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379

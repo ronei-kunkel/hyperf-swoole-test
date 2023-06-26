@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace App\Infra\Database\Model;
+namespace App\Infra\Repository\Mysql;
 
 use Hyperf\DbConnection\Model\Model as BaseModel;
 

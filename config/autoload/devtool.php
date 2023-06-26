@@ -29,7 +29,7 @@ return [
             'namespace' => 'App\\Infra\\Http\\Controller',
         ],
         'model' => [
-            'namespace' => 'App\\Infra\\Database\\Model'
+            'namespace' => 'App\\Infra\\Repository\\Mysql'
         ],
         'job' => [
             'namespace' => 'App\\Job',
